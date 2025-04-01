@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра "Знайди пару" - Лабораторна робота 1.19</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #ecf0f1;
+            --shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .main-container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .game-description {
+            margin-bottom: 40px;
+            color: #34495e;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: var(--dark-text);
+        }
+        
+        .category-description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .start-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), #27ae60);
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.6);
+            background: linear-gradient(45deg, #27ae60, var(--primary-color));
+        }
+        
+        .back-link {
+            margin-top: 30px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+        
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover::before {
+            transform: translateX(-5px);
+        }
+        
+        .difficulty-selector {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(236, 240, 241, 0.5);
+            border-radius: 15px;
+        }
+        
+        .difficulty-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .difficulty-option {
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: #ecf0f1;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .difficulty-option.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .categories-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-card {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate__animated animate__fadeIn">
+        <h1>Гра "Знайди пару"</h1>
+        <div class="subtitle">Тренуйте пам'ять та уважність</div>
+        
+        <div class="game-description">
+            <p>Виберіть категорію зображень та рівень складності, щоб розпочати гру.</p>
+            <p>Ваше завдання - знайти всі пари зображень за найкоротший час з мінімальною кількістю спроб.</p>
+        </div>
+        
+        <div class="difficulty-selector">
+            <h3>Оберіть рівень складності:</h3>
+            <div class="difficulty-options">
+                <div class="difficulty-option active" data-level="easy">Легкий</div>
+                <div class="difficulty-option" data-level="medium">Середній</div>
+                <div class="difficulty-option" data-level="hard">Складний</div>
+            </div>
+        </div>
+        
+        <div class="categories-container">
+            <div class="category-card" data-category="animals">
+                <div class="category-icon">🐾</div>
+                <h3 class="category-title">Тварини</h3>
+                <p class="category-description">Знайдіть пари зображень різних тварин</p>
+            </div>
+            
+            <div class="category-card" data-category="insects">
+                <div class="category-icon">🦋</div>
+                <h3 class="category-title">Комахи</h3>
+                <p class="category-description">Парні зображення комах та метеликів</p>
+            </div>
+            
+            <div class="category-card" data-category="fish">
+                <div class="category-icon">🐠</div>
+                <h3 class="category-title">Риби</h3>
+                <p class="category-description">Морські та прісноводні види риб</p>
+            </div>
+            
+            <div class="category-card" data-category="birds">
+                <div class="category-icon">🦜</div>
+                <h3 class="category-title">Птахи</h3>
+                <p class="category-description">Різнокольорові птахи з усього світу</p>
+            </div>
+        </div>
+        
+        <a href="#" id="startGameBtn" class="start-button">Розпочати гру</a>
+        <a href="../index.html" class="back-link">Повернутися на головну</a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Анімація елементів при завантаженні
+            $(".category-card").each(function(index) {
+                $(this).delay(100 * index).queue(function() {
+                    $(this).addClass("animate__animated animate__fadeInUp").dequeue();
+                });
+            });
+            
+            // Обробник вибору складності
+            $(".difficulty-option").click(function() {
+                $(".difficulty-option").removeClass("active");
+                $(this).addClass("active");
+            });
+            
+            // Обробник вибору категорії
+            let selectedCategory = null;
+            $(".category-card").click(function() {
+                $(".category-card").css("border-color", "transparent");
+                $(this).css("border-color", "var(--primary-color)");
+                selectedCategory = $(this).data("category");
+            });
+            
+            // Обробник кнопки початку гри
+            $("#startGameBtn").click(function(e) {
+                e.preventDefault();
+                
+                if (!selectedCategory) {
+                    alert("Будь ласка, оберіть категорію!");
+                    return;
+                }
+                
+                const difficulty = $(".difficulty-option.active").data("level");
+                window.location.href = `game.html?category=${selectedCategory}&difficulty=${difficulty}`;
+            });
+            
+            // Автоматичний вибір першої категорії
+            $(".category-card").first().click();
+        });
+    </script>
+</body>
+</html>
