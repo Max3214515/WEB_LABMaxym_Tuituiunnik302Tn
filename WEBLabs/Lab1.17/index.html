@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаб. 1.17 | Робота з датами та грами</title>
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --secondary-color: #5c6bc0;
+            --accent-color: #ff4081;
+            --text-color: #263238;
+            --light-bg: #f5f5f5;
+            --dark-bg: #263238;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fafafa;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .exercise-card {
+            background: white;
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .exercise-title {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .output-area {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-family: 'Consolas', monospace;
+            min-height: 20px;
+        }
+        
+        .console-output {
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            line-height: 1.5;
+        }
+        
+        .action-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        .action-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .action-button.game {
+            background-color: var(--accent-color);
+        }
+        
+        .action-button.game:hover {
+            background-color: #ff79b0;
+        }
+        
+        .nav-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1 class="page-title">Лабораторна робота 1.17</h1>
+        <p>Робота з датами та створення інтерактивних ігор</p>
+    </header>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Поточна дата та час</h2>
+        <p>Створіть функцію, яка відображає поточний час у форматі: <span class="highlight">09:15:56, середа, 06 травня 2020 року</span> з використанням об'єкта Date.</p>
+        <button class="action-button" id="showTimeBtn">Показати поточний час</button>
+        <div class="output-area" id="timeOutput"></div>
+        <div class="console-output" id="timeConsole"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Гра "Вгадай число"</h2>
+        <p>Спробуйте вгадати випадкове число від 0 до 100. Гра надаватиме підказки ("тепліше", "холодніше") після кожної спроби.</p>
+        <button class="action-button game" id="startGameBtn">Почати нову гру</button>
+        <div class="output-area" id="gameOutput"></div>
+        <div class="console-output" id="gameConsole"></div>
+    </section>
+
+    <a href="../index.html" class="nav-button">← На головну сторінку</a>
+
+    <script>
+        // Завдання 1: Відображення поточної дати та часу
+        document.getElementById('showTimeBtn').addEventListener('click', function() {
+            const now = new Date();
+            
+            // Форматування часу
+            const timeOptions = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false
+            };
+            const timeString = now.toLocaleTimeString('uk-UA', timeOptions);
+            
+            // Форматування дня тижня
+            const weekdayOptions = { weekday: 'long' };
+            const weekday = now.toLocaleDateString('uk-UA', weekdayOptions);
+            
+            // Форматування дати
+            const dateOptions = { 
+                day: '2-digit', 
+                month: 'long', 
+                year: 'numeric' 
+            };
+            const dateString = now.toLocaleDateString('uk-UA', dateOptions);
+            
+            // Комбінований рядок
+            const fullDateTime = `${timeString}, ${weekday}, ${dateString} року`;
+            
+            // Вивід результатів
+            document.getElementById('timeOutput').textContent = fullDateTime;
+            document.getElementById('timeConsole').textContent = fullDateTime;
+            
+            // Вивід в консоль браузера
+            console.log('Поточний час:', fullDateTime);
+        });
+
+        // Завдання 2: Гра "Вгадай число"
+        const game = {
+            secretNumber: null,
+            attempts: 0,
+            lastGuess: null,
+            isGameActive: false,
+            
+            init: function() {
+                this.secretNumber = Math.floor(Math.random() * 101);
+                this.attempts = 0;
+                this.lastGuess = null;
+                this.isGameActive = true;
+                
+                document.getElementById('gameOutput').textContent = 'Гра розпочата! Спробуйте вгадати число від 0 до 100.';
+                document.getElementById('gameConsole').innerHTML = '';
+                
+                this.logGameStart();
+                this.makeGuess();
+            },
+            
+            makeGuess: function() {
+                if (!this.isGameActive) return;
+                
+                const userGuess = prompt('Введіть ваше число (0-100) або натисніть "Скасувати" для виходу:');
+                
+                // Перевірка на скасування
+                if (userGuess === null) {
+                    this.endGame('Гру перервано.');
+                    return;
+                }
+                
+                // Перевірка валідності введення
+                const guess = parseInt(userGuess);
+                if (isNaN(guess) {
+                    alert('Будь ласка, введіть число!');
+                    this.makeGuess();
+                    return;
+                }
+                
+                if (guess < 0 || guess > 100) {
+                    alert('Число має бути в діапазоні від 0 до 100!');
+                    this.makeGuess();
+                    return;
+                }
+                
+                // Обробка спроби
+                this.attempts++;
+                const result = this.processGuess(guess);
+                
+                if (result.isCorrect) {
+                    this.endGame(`Вітаємо! Ви вгадали число ${this.secretNumber} за ${this.attempts} спроб.`);
+                    
+                    if (confirm('Хочете зіграти ще раз?')) {
+                        this.init();
+                    }
+                } else {
+                    alert(result.hint);
+                    this.logAttempt(guess, result.hint);
+                    this.makeGuess();
+                }
+            },
+            
+            processGuess: function(guess) {
+                const difference = Math.abs(guess - this.secretNumber);
+                let hint = '';
+                
+                // Визначення підказки
+                if (difference === 0) {
+                    return { isCorrect: true };
+                } else if (difference > 50) {
+                    hint = 'Дуже холодно';
+                } else if (difference > 30) {
+                    hint = 'Холодно';
+                } else if (difference > 15) {
+                    hint = 'Прохолодно';
+                } else if (difference > 8) {
+                    hint = 'Тепло';
+                } else if (difference > 4) {
+                    hint = 'Гаряче';
+                } else {
+                    hint = 'Дуже гаряче!';
+                }
+                
+                // Додавання інформації про тенденцію
+                if (this.lastGuess !== null) {
+                    const prevDifference = Math.abs(this.lastGuess - this.secretNumber);
+                    if (difference < prevDifference) {
+                        hint += ', тепліше';
+                    } else if (difference > prevDifference) {
+                        hint += ', холодніше';
+                    }
+                }
+                
+                this.lastGuess = guess;
+                return { isCorrect: false, hint: hint };
+            },
+            
+            logGameStart: function() {
+                const now = new Date();
+                const logEntry = `[${now.toLocaleString('uk-UA')}] Гра розпочата. Загадане число: ${this.secretNumber}`;
+                
+                console.log(logEntry);
+                this.addToGameConsole(logEntry);
+            },
+            
+            logAttempt: function(guess, hint) {
+                const now = new Date();
+                const logEntry = `[${now.toLocaleString('uk-UA')}] Спроба ${this.attempts}: ${guess} - ${hint}`;
+                
+                console.log(logEntry);
+                this.addToGameConsole(logEntry);
+            },
+            
+            addToGameConsole: function(text) {
+                const consoleElement = document.getElementById('gameConsole');
+                consoleElement.innerHTML += text + '<br>';
+                consoleElement.scrollTop = consoleElement.scrollHeight;
+            },
+            
+            endGame: function(message) {
+                this.isGameActive = false;
+                document.getElementById('gameOutput').textContent = message;
+                
+                const now = new Date();
+                const logEntry = `[${now.toLocaleString('uk-UA')}] ${message}`;
+                
+                console.log(logEntry);
+                this.addToGameConsole(logEntry);
+            }
+        };
+
+        // Запуск гри при кліку на кнопку
+        document.getElementById('startGameBtn').addEventListener('click', function() {
+            game.init();
+        });
+    </script>
+</body>
+</html>
