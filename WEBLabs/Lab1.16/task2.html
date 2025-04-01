@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаб. 1.16 - Частина 2 | Інтерактивні елементи</title>
+    <style>
+        :root {
+            --primary-color: #673ab7;
+            --secondary-color: #9575cd;
+            --click-color: #e53935;
+            --text-color: #2d2d2d;
+            --light-bg: #f3e5f5;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fafafa;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .exercise-card {
+            background: white;
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .exercise-title {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .output-area {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-family: 'Consolas', monospace;
+            min-height: 20px;
+        }
+        
+        .color-box-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        
+        .color-box {
+            width: 160px;
+            height: 160px;
+            background-color: var(--primary-color);
+            margin: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .color-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        
+        .nav-button {
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .prev-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .home-button {
+            background-color: #607d8b;
+            color: white;
+        }
+        
+        .nav-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1 class="page-title">Лабораторна робота 1.16</h1>
+        <p>Частина 2 - Робота з інтерактивними елементами</p>
+    </header>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Інтерактивні кольорові блоки</h2>
+        <p>Реалізуйте функціонал, де кожен блок при першому кліці змінює колір на червоний, а при наступному - повертається до початкового кольору, і так далі по черзі.</p>
+        
+        <div class="color-box-container">
+            <div class="color-box" id="interactiveBox1">Блок 1</div>
+            <div class="color-box" id="interactiveBox2">Блок 2</div>
+            <div class="color-box" id="interactiveBox3">Блок 3</div>
+        </div>
+        
+        <div class="output-area" id="statusOutput"></div>
+    </section>
+
+    <div class="nav-links">
+        <a href="index.html" class="nav-button prev-button">← Частина 1</a>
+        <a href="../index.html" class="nav-button home-button">Головна сторінка</a>
+    </div>
+
+    <script>
+        // Завдання: перемикання кольорів блоків
+        document.querySelectorAll('.color-box').forEach(box => {
+            // Початковий стан
+            let isOriginalColor = true;
+            const originalBg = window.getComputedStyle(box).backgroundColor;
+            
+            box.addEventListener('click', function() {
+                if (isOriginalColor) {
+                    // Змінюємо на червоний
+                    this.style.backgroundColor = var(--click-color);
+                    this.textContent = 'Активний';
+                    document.getElementById('statusOutput').textContent = 
+                        `Блок ${this.id} змінив колір на червоний`;
+                } else {
+                    // Повертаємо початковий колір
+                    this.style.backgroundColor = originalBg;
+                    this.textContent = `Блок ${this.id.slice(-1)}`;
+                    document.getElementById('statusOutput').textContent = 
+                        `Блок ${this.id} повернув початковий колір`;
+                }
+                
+                // Інвертуємо стан
+                isOriginalColor = !isOriginalColor;
+                
+                // Додаємо анімацію
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

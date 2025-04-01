@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна 1.16 | Робота з подіями</title>
+    <style>
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #9c4dcc;
+            --accent-color: #e1bee7;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: #fafafa;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .page-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .exercise-card {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary-color);
+        }
+        
+        .exercise-title {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .output-area {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            font-family: 'Consolas', monospace;
+            min-height: 20px;
+        }
+        
+        .action-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .action-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .exercise-image {
+            width: 180px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s;
+            border: 2px solid #ddd;
+        }
+        
+        .exercise-image:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary-color);
+        }
+        
+        .exercise-link {
+            display: block;
+            padding: 8px 12px;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            margin: 10px 0;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+        
+        .exercise-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .input-field {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 350px;
+            margin: 10px 0;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .input-field:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .number-paragraph {
+            background-color: var(--accent-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        
+        .number-paragraph:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .nav-button {
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+        }
+        
+        .home-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .next-button {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <h1 class="page-title">Лабораторна робота 1.16</h1>
+        <p>Робота з обробниками подій в JavaScript</p>
+    </header>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Обробка кліків на зображення</h2>
+        <p>Реалізуйте функціонал, при якому клік на зображення виводить його шлях (атрибут src) у вікні alert.</p>
+        <div class="media-container">
+            <img src="img/photo1.jpg" alt="Фото 1" class="exercise-image">
+            <img src="img/photo2.jpg" alt="Фото 2" class="exercise-image">
+            <img src="img/photo3.jpg" alt="Фото 3" class="exercise-image">
+        </div>
+        <div class="output-area" id="output1"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Динамічний title для посилань</h2>
+        <p>При наведенні на посилання записуйте його текстовий вміст у атрибут title.</p>
+        <div>
+            <a href="#item1" class="exercise-link" id="itemLink1">Посилання номер один</a>
+            <a href="#item2" class="exercise-link" id="itemLink2">Посилання номер два</a>
+            <a href="#item3" class="exercise-link" id="itemLink3">Посилання номер три</a>
+        </div>
+        <div class="output-area" id="output2"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Відображення href посилань</h2>
+        <p>При наведенні на посилання додавайте його href у круглих дужках після основного тексту.</p>
+        <div>
+            <a href="#section1" class="exercise-link" id="sectionLink1">Перший розділ</a>
+            <a href="#section2" class="exercise-link" id="sectionLink2">Другий розділ</a>
+            <a href="#section3" class="exercise-link" id="sectionLink3">Третій розділ</a>
+        </div>
+        <div class="output-area" id="output3"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Одноразова подія для посилань</h2>
+        <p>Додавання href має відбуватися лише при першому наведенні, після чого обробник події видаляється.</p>
+        <div>
+            <a href="#page1" class="exercise-link" id="pageLink1">Сторінка 1</a>
+            <a href="#page2" class="exercise-link" id="pageLink2">Сторінка 2</a>
+            <a href="#page3" class="exercise-link" id="pageLink3">Сторінка 3</a>
+        </div>
+        <div class="output-area" id="output4"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Відстеження вмісту полів вводу</h2>
+        <p>При втраті фокусу полем вводу виводити його значення у спеціальний блок.</p>
+        <div>
+            <input type="text" class="input-field" id="userInput1" placeholder="Введіть текст тут">
+            <input type="text" class="input-field" id="userInput2" placeholder="Введіть текст тут">
+            <input type="text" class="input-field" id="userInput3" placeholder="Введіть текст тут">
+        </div>
+        <div class="output-area" id="output5"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Одноразовий alert для полів вводу</h2>
+        <p>При першому кліці на поле вводу показувати його значення через alert (лише один раз).</p>
+        <div>
+            <input type="text" class="input-field" id="singleClickInput1" placeholder="Клікніть один раз">
+            <input type="text" class="input-field" id="singleClickInput2" placeholder="Клікніть один раз">
+            <input type="text" class="input-field" id="singleClickInput3" placeholder="Клікніть один раз">
+        </div>
+        <div class="output-area" id="output6"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Обчислення квадрату числа</h2>
+        <p>При кліці на число у параграфі замінювати його на квадрат цього числа.</p>
+        <div>
+            <p class="number-paragraph" id="calcNum1">4</p>
+            <p class="number-paragraph" id="calcNum2">6</p>
+            <p class="number-paragraph" id="calcNum3">8</p>
+        </div>
+        <div class="output-area" id="output7"></div>
+    </section>
+
+    <section class="exercise-card">
+        <h2 class="exercise-title">Валідація довжини вводу</h2>
+        <p>При втраті фокусу перевіряти, чи відповідає довжина введеного тексту очікуваній (вказано в data-length).</p>
+        <div>
+            <input type="text" class="input-field" id="validInput1" data-length="4" placeholder="Введіть 4 символи">
+            <input type="text" class="input-field" id="validInput2" data-length="6" placeholder="Введіть 6 символів">
+            <input type="text" class="input-field" id="validInput3" data-length="8" placeholder="Введіть 8 символів">
+        </div>
+        <div class="output-area" id="output8"></div>
+    </section>
+
+    <div class="nav-links">
+        <a href="../index.html" class="nav-button home-button">На головну</a>
+        <a href="task2.html" class="nav-button next-button">Друга частина →</a>
+    </div>
+
+    <script>
+        // Завдання 1: Кліки на зображення
+        document.querySelectorAll('.exercise-image').forEach(img => {
+            img.addEventListener('click', function() {
+                const imagePath = this.src.split('/').pop();
+                alert(`Шлях до зображення: ${this.src}`);
+                document.getElementById('output1').textContent = `Обрано: ${imagePath}`;
+            });
+        });
+
+        // Завдання 2: Динамічний title
+        document.querySelectorAll('[id^="itemLink"]').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.title = this.textContent;
+                document.getElementById('output2').textContent = 
+                    `Для "${this.textContent}" встановлено title`;
+            });
+        });
+
+        // Завдання 3: Додавання href до тексту
+        document.querySelectorAll('[id^="sectionLink"]').forEach(link => {
+            link.addEventListener('mouseover', function() {
+                if (!this.dataset.processed) {
+                    const baseText = this.textContent.split(' (')[0];
+                    this.textContent = `${baseText} (${this.href.split('#')[1]})`;
+                    this.dataset.processed = true;
+                    document.getElementById('output3').textContent = 
+                        `Додано href для "${baseText}"`;
+                }
+            });
+        });
+
+        // Завдання 4: Одноразова подія
+        document.querySelectorAll('[id^="pageLink"]').forEach(link => {
+            const handler = function() {
+                const baseText = this.textContent.split(' (')[0];
+                this.textContent = `${baseText} (${this.href.split('#')[1]})`;
+                document.getElementById('output4').textContent = 
+                    `Виконано одноразову обробку для "${baseText}"`;
+                this.removeEventListener('mouseover', handler);
+            };
+            link.addEventListener('mouseover', handler);
+        });
+
+        // Завдання 5: Відстеження полів вводу
+        document.querySelectorAll('[id^="userInput"]').forEach(input => {
+            input.addEventListener('blur', function() {
+                document.getElementById('output5').textContent = 
+                    `Поле ${this.id} містить: "${this.value}"`;
+            });
+        });
+
+        // Завдання 6: Одноразовий alert
+        document.querySelectorAll('[id^="singleClickInput"]').forEach(input => {
+            const clickHandler = function() {
+                alert(`Поточне значення: ${this.value}`);
+                document.getElementById('output6').textContent = 
+                    `Показано alert для ${this.id}`;
+                this.removeEventListener('click', clickHandler);
+            };
+            input.addEventListener('click', clickHandler);
+        });
+
+        // Завдання 7: Квадрат числа
+        document.querySelectorAll('.number-paragraph').forEach(para => {
+            para.addEventListener('click', function() {
+                const num = parseInt(this.textContent);
+                this.textContent = num * num;
+                document.getElementById('output7').textContent = 
+                    `Обчислено квадрат числа ${num}`;
+            });
+        });
+
+        // Завдання 8: Валідація довжини
+        document.querySelectorAll('[id^="validInput"]').forEach(input => {
+            input.addEventListener('blur', function() {
+                const requiredLength = parseInt(this.dataset.length);
+                const isValid = this.value.length === requiredLength;
+                
+                this.style.borderColor = isValid ? '#4caf50' : '#f44336';
+                document.getElementById('output8').textContent = 
+                    `Поле ${this.id}: ${isValid ? 'Валідне' : 'Невалідне'}`;
+            });
+        });
+    </script>
+</body>
+</html>
