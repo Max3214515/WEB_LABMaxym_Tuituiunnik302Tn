@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота 1.18 - Числова гра</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #2c3e50;
+        }
+        .container {
+            text-align: center;
+            padding: 35px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            max-width: 650px;
+            width: 92%;
+        }
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 25px;
+            font-size: 2.6em;
+            font-weight: 700;
+        }
+        .description {
+            margin-bottom: 35px;
+            line-height: 1.7;
+            color: #34495e;
+            font-size: 1.15em;
+        }
+        .play-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 1.25em;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+        .play-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+        .navigation {
+            margin-top: 25px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+        .navigation:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Числова послідовність</h1>
+        <div class="description">
+            <p>Ласкаво просимо до гри "Числова послідовність"!</p>
+            <p>Ваша мета — відшукати та обрати числа від 1 до 20 у правильному порядку.</p>
+            <p>На виконання завдання відведено 60 секунд. Намагайтеся впоратися якомога швидше!</p>
+        </div>
+        <a href="game.html" class="play-button">Розпочати гру</a>
+    </div>
+    <a href="../index.html" class="navigation">← На головну сторінку</a>
+    <script>
+        $(document).ready(function() {
+            // Ефект появи при завантаженні
+            $(".container").css("opacity", 0).animate({opacity: 1}, 1200);
+            
+            // Ефект при наведенні на кнопку
+            $(".play-button").hover(
+                function() { $(this).css("box-shadow", "0 6px 18px rgba(231, 76, 60, 0.35)"); },
+                function() { $(this).css("box-shadow", "none"); }
+            );
+        });
+    </script>
+</body>
+</html>
