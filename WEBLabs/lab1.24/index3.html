@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Інтерактивні веб-лабораторні</title>
+    <style>
+        body {
+            font-family: 'Verdana', Tahoma, sans-serif;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: #eef3f8;
+            color: #2a2a2a;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a1a40;
+            margin-bottom: 35px;
+            padding-bottom: 18px;
+            border-bottom: 3px solid #7f8cdb;
+        }
+
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .lab-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+            padding: 22px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .lab-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .lab-title {
+            color: #1a1a40;
+            margin: 0 0 18px 0;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #7f8cdb;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .task-list {
+            list-style-type: disc;
+            padding-left: 24px;
+            margin-bottom: 22px;
+            color: #444444;
+        }
+
+        .task-list li {
+            margin-bottom: 9px;
+            line-height: 1.5;
+        }
+
+        .lab-link {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            background-color: #7f8cdb;
+            color: #fff;
+            padding: 12px 0;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .lab-link:hover {
+            background-color: #5e6ac3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 1px solid #d6d9e6;
+            color: #8c8c8c;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Інтерактивний збірник лабораторних робіт</h1>
+
+    <div class="labs-grid">
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.15</h2>
+            <ul class="task-list">
+                <li>Генерація простих чисел в діапазоні від 0 до 100 за допомогою циклу while</li>
+                <li>Виведення чисел від 0 до 10 за циклом do...while</li>
+                <li>Послідовне ділення числа на 2 до досягнення значення менше 50</li>
+                <li>Визначення пори року за номером місяця</li>
+                <li>Перетворення температури з Цельсія у Фаренгейти</li>
+                <li>Визначення дня тижня за номером</li>
+            </ul>
+            <a href="lab1.15/index.html" class="lab-link">Відкрити лабораторну 1.15</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.16</h2>
+            <ul class="task-list">
+                <li>Отримання атрибута src при кліці на зображення</li>
+                <li>Встановлення тексту в атрибут title при наведенні на посилання</li>
+                <li>Додавання посилання у круглих дужках при наведенні</li>
+                <li>Відключення події після першого наведення</li>
+                <li>Відображення значення input у параграфі при втраті фокусу</li>
+                <li>Виведення значення input при першому натисканні</li>
+                <li>Обчислення квадрата числа при кліку на абзац</li>
+                <li>Контроль довжини введеного тексту в input</li>
+            </ul>
+            <a href="lab1.16/index.html" class="lab-link">Відкрити лабораторну 1.16</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.16 (додатково)</h2>
+            <ul class="task-list">
+                <li>Зміна кольору блоку div при кліку</li>
+            </ul>
+            <a href="lab1.16/task2.html" class="lab-link">Відкрити додаткову частину 1.16</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.17</h2>
+            <ul class="task-list">
+                <li>Функція для показу поточного часу і дати</li>
+                <li>Гра-загадка "Вгадай число"</li>
+            </ul>
+            <a href="lab1.17/index.html" class="lab-link">Відкрити лабораторну 1.17</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.18</h2>
+            <ul class="task-list">
+                <li>Інтерактивна гра "Знайди числа" з використанням jQuery</li>
+                <li>Таймер, лічильник спроб і збереження результатів</li>
+            </ul>
+            <a href="lab1.18/index.html" class="lab-link">Відкрити лабораторну 1.18</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.19</h2>
+            <ul class="task-list">
+                <li>Гра "Друга гра" з бібліотекою jQuery UI</li>
+                <li>Перетягування картинок у три категорії</li>
+            </ul>
+            <a href="lab1.19/index.html" class="lab-link">Відкрити лабораторну 1.19</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.20</h2>
+            <ul class="task-list">
+                <li>Калькулятор, реалізований на чистому JavaScript</li>
+                <li>Динамічне створення елементів та стилізація через JS</li>
+            </ul>
+            <a href="lab1.20/index.html" class="lab-link">Відкрити лабораторну 1.20</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.21</h2>
+            <ul class="task-list">
+                <li>AJAX-калькулятор для обчислення квадрата числа</li>
+                <li>Імітація обробки даних на сервері</li>
+            </ul>
+            <a href="lab1.21/index.html" class="lab-link">Відкрити лабораторну 1.21</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.22</h2>
+            <ul class="task-list">
+                <li>Функції JavaScript для роботи з масивами та числами</li>
+                <li>11 завдань з рішеннями та тестами</li>
+            </ul>
+            <a href="lab1.22/index.html" class="lab-link">Відкрити лабораторну 1.22</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.23</h2>
+            <ul class="task-list">
+                <li>Вибір мови та відображення дня тижня</li>
+                <li>Моделювання електричних схем із різними елементами</li>
+            </ul>
+            <a href="lab1.23/index.html" class="lab-link">Відкрити лабораторну 1.23</a>
+        </div>
+
+        <div class="lab-container">
+            <h2 class="lab-title">Лабораторна 1.24</h2>
+            <ul class="task-list">
+                <li>Проєкт на React.js з використанням CDN та Create React App</li>
+                <li>Класові та функціональні компоненти</li>
+                <li>Розробка компонентів з описом хобі</li>
+            </ul>
+            <a href="lab1.24/index.html" class="lab-link">Відкрити лабораторну 1.24</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Інтерактивні веб-лабораторні роботи</p>
+    </footer>
+</body>
+</html>
