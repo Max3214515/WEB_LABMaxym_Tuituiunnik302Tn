@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ЛР 1.21 — Обчислення квадрату через AJAX</title>
+  <style>
+    body {
+      background: #e9e9e9;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 25px;
+      max-width: 750px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+
+    .wrapper {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+      margin-top: 25px;
+    }
+
+    .input-block {
+      margin-bottom: 20px;
+    }
+
+    .input-block label {
+      font-weight: 600;
+      font-size: 17px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .input-block input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1.8px solid #ccc;
+      border-radius: 6px;
+      transition: border 0.2s;
+    }
+
+    .input-block input:focus {
+      border-color: #28a745;
+      outline: none;
+    }
+
+    .action-button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .action-button:hover {
+      background-color: #218838;
+    }
+
+    .message-error {
+      color: #c62828;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .loader {
+      width: 38px;
+      height: 38px;
+      margin: 20px auto;
+      border-radius: 50%;
+      border: 4px solid #ddd;
+      border-top: 4px solid #28a745;
+      animation: rotate 1s infinite linear;
+      display: none;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .output {
+      background-color: #f0fdf4;
+      margin-top: 25px;
+      border-left: 5px solid #28a745;
+      padding: 18px;
+      display: none;
+      border-radius: 5px;
+    }
+
+    .output h2 {
+      margin-top: 0;
+      color: #28a745;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 35px;
+      color: #28a745;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Обчислити квадрат числа</h1>
+
+  <div class="wrapper">
+    <div class="input-block">
+      <label for="numInput">Введіть значення:</label>
+      <input type="number" id="numInput" placeholder="Наприклад: 5" />
+    </div>
+
+    <button class="action-button" id="runCalc">Розрахувати</button>
+    <div class="message-error" id="msgError">Невірне значення. Введіть число!</div>
+
+    <div class="loader" id="loading"></div>
+
+    <div class="output" id="showResult">
+      <h2>Результат</h2>
+      <p id="valueResult"></p>
+    </div>
+  </div>
+
+  <a class="back-btn" href="../index.html">← На головну сторінку</a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const input = document.getElementById('numInput');
+      const button = document.getElementById('runCalc');
+      const error = document.getElementById('msgError');
+      const loader = document.getElementById('loading');
+      const output = document.getElementById('showResult');
+      const result = document.getElementById('valueResult');
+
+      function runSquareCalc() {
+        const val = input.value.trim();
+
+        if (val === '' || isNaN(val)) {
+          error.style.display = 'block';
+          output.style.display = 'none';
+          return;
+        }
+
+        error.style.display = 'none';
+        loader.style.display = 'block';
+        output.style.display = 'none';
+
+        setTimeout(() => {
+          const squared = val * val;
+          result.textContent = `Квадрат числа ${val} дорівнює ${squared}`;
+          loader.style.display = 'none';
+          output.style.display = 'block';
+        }, 800);
+      }
+
+      button.addEventListener('click', runSquareCalc);
+      input.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          runSquareCalc();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
