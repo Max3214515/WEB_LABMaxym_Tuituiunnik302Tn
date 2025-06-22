@@ -1,0 +1,98 @@
+[
+  {
+    "product_id": 1,
+    "title": "Samsung Galaxy S23 Смартфон",
+    "cost": 33000,
+    "type": "Електроніка",
+    "img": "https://via.placeholder.com/300x200?text=Galaxy+S23+Samsung",
+    "details": "Потужний телефон із 6.1-дюймовим дисплеєм, 8GB RAM і процесором Snapdragon 8 Gen 2."
+  },
+  {
+    "product_id": 2,
+    "title": "HP Pavilion 15 Ноутбук",
+    "cost": 22500,
+    "type": "Комп'ютери",
+    "img": "https://via.placeholder.com/300x200?text=HP+Pavilion+15+Laptop",
+    "details": "Ноутбук з 15.6-дюймовим екраном, Intel Core i5, 16GB оперативної пам'яті та SSD 512GB."
+  },
+  {
+    "product_id": 3,
+    "title": "Роман «Майстер і Маргарита»",
+    "cost": 310,
+    "type": "Книги",
+    "img": "https://via.placeholder.com/300x200?text=Master+and+Margarita",
+    "details": "Видатний роман Булгакова, тверда обкладинка, 448 сторінок, шедевр XX століття."
+  },
+  {
+    "product_id": 4,
+    "title": "Кавоварка Delonghi Magnifica S",
+    "cost": 14600,
+    "type": "Побутова техніка",
+    "img": "https://via.placeholder.com/300x200?text=Delonghi+Magnifica+S+Coffee+Machine",
+    "details": "Автоматична кавоварка з вбудованою кавомолкою, 15 бар тиску, капучино."
+  },
+  {
+    "product_id": 5,
+    "title": "Робочий стіл Stockholm",
+    "cost": 6000,
+    "type": "Меблі",
+    "img": "https://via.placeholder.com/300x200?text=Stockholm+Table",
+    "details": "Сучасний робочий стіл із дубовою стільницею та металевими ніжками. Розмір 140x70x75 см."
+  },
+  {
+    "product_id": 6,
+    "title": "Набір посуду Tefal Ingenio",
+    "cost": 3500,
+    "type": "Товари для дому",
+    "img": "https://via.placeholder.com/300x200?text=Tefal+Cookware+Set",
+    "details": "Набір із 10 предметів: каструлі, сковорідки з антипригарним покриттям, знімні ручки."
+  },
+  {
+    "product_id": 7,
+    "title": "Bosch Series 6 Пральна машина",
+    "cost": 19000,
+    "type": "Побутова техніка",
+    "img": "https://via.placeholder.com/300x200?text=Bosch+Washing+Machine+Series6",
+    "details": "Фронтальне завантаження, 9 кг, 1400 об/хв, A+++, парова функція, управління зі смартфона."
+  },
+  {
+    "product_id": 8,
+    "title": "Nike Dri-FIT Футболка",
+    "cost": 1000,
+    "type": "Одяг",
+    "img": "https://via.placeholder.com/300x200?text=Nike+DriFIT+Shirt",
+    "details": "Спортивна футболка з технологією Dri-FIT для швидкого відведення вологи. Різні кольори і розміри."
+  },
+  {
+    "product_id": 9,
+    "title": "iPad Air Планшет",
+    "cost": 28000,
+    "type": "Електроніка",
+    "img": "https://via.placeholder.com/300x200?text=Apple+iPad+Air",
+    "details": "Дисплей Liquid Retina 10.9\", M1 чіп, 256GB пам'яті, підтримка Apple Pencil та Magic Keyboard."
+  },
+  {
+    "product_id": 10,
+    "title": "Canon EOS 850D Фотоапарат",
+    "cost": 25000,
+    "type": "Електроніка",
+    "img": "https://via.placeholder.com/300x200?text=Canon+EOS+850D+Camera",
+    "details": "Дзеркальний фотоапарат 24.1 Мп, 4K відео, 7 кадрів/с, Wi-Fi та Bluetooth."
+  },
+  {
+    "product_id": 11,
+    "title": "Adidas Ultraboost Кросівки",
+    "cost": 5000,
+    "type": "Взуття",
+    "img": "https://via.placeholder.com/300x200?text=Adidas+Ultraboost+Shoes",
+    "details": "Бігова взуття з технологією Boost для максимальної амортизації і енерговіддачі."
+  },
+  {
+    "product_id": 12,
+    "title": "The North Face Borealis Рюкзак",
+    "cost": 2500,
+    "type": "Аксесуари",
+    "img": "https://via.placeholder.com/300x200?text=TNF+Borealis+Backpack",
+    "details": "Міський рюкзак 28 л з відділенням для ноутбука 15\", ергономічна спинка і багато кишень."
+  }
+]
